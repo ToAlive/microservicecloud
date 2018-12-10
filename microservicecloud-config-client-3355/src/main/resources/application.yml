@@ -1,0 +1,5 @@
+#在spring boot应用中application.yml配置文件最好还是保证它的存在
+#但是不用写太多东西，name的名字必须保证和bootstrap里面的name名字一致microservicecloud-config-client
+spring:
+  application:
+    name: microservicecloud-config-client

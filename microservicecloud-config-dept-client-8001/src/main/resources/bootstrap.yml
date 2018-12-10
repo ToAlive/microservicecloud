@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      name: microservicecloud-config-dept-client #从github上读取的资源名称，不加后缀.yml
+      profile: dev #要加载的配置项，也可以理解为要使用的环境
+      label: master #分支的名称
+      #当前微服务启动后先去找config3344服务，通过config server从github上加载资源
+      uri: http://config-server.com:3344

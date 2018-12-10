@@ -1,0 +1,43 @@
+server:
+  port: 8001
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.atguigu.springcloud.entities    # 所有Entity别名类所在包
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml                       # mapper映射文件
+
+spring:
+  application:
+    name: microservicecloud-dept
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    url: jdbc:mysql://192.168.196.130:3306/cloudDB01              # 数据库名称
+    username: root
+    password: 123456
+    dbcp2:
+      min-idle: 5                                           # 数据库连接池的最小维持连接数
+      initial-size: 5                                       # 初始化连接数
+      max-total: 5                                          # 最大连接数
+      max-wait-millis: 200                                  # 等待连接获取的最大超时时间
+
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      #只有一个eureka服务注册中心,只用在一个服务注册中心注册
+      defaultZone: http://eureka7001.com:7001/eureka/
+      #eureka集群，需要在每个eureka服务注册中心注册这个服务
+      #defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  #指定在服务注册中心显示的主机名，默认是localhost:microservicecloud-dept8001
+  instance:
+    instance-id: microservicecloud-dept-hystrix-8001
+    prefer-ip-address: true     #访问路径可以显示IP地址
+
+#将这些属性返回到info页面上去
+info:
+  app.name: WhoamI8001
+  company.name: WhoamI
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
+
